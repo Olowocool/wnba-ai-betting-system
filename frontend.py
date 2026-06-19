@@ -9,6 +9,7 @@ from totals_tracker import (
 )
 from datetime import date, datetime
 from best_bet_selector_v2 import select_best_bet_v2
+from wnba_data_collector import collect_wnba_games
 from generate_totals_test_data import add_totals_test_data
 from train_totals_model import train_totals_model
 from totals_ai_predictor import totals_ai_prediction
@@ -768,6 +769,27 @@ if "last_loaded_date" not in st.session_state:
 
 st.title("WNBA Games")
 
+st.subheader("WNBA Data Collector")
+
+season_input = st.number_input(
+    "Season",
+    min_value=2020,
+    max_value=2030,
+    value=2025,
+    step=1
+)
+
+if st.button("Load WNBA Historical Games"):
+    result = collect_wnba_games(int(season_input))
+
+    if result["status"] == "success":
+        st.success(
+            f"Loaded {result['rows']} WNBA games into {result['file']}."
+        )
+    else:
+        st.error(result.get("message", "WNBA data collection failed."))
+
+    st.json(result)
 date_input = st.text_input(
     "Game Date (MM/DD/YYYY)",
     value="05/21/2026"
