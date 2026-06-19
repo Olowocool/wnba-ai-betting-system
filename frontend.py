@@ -8,6 +8,7 @@ from totals_tracker import (
     load_totals_history
 )
 from datetime import date, datetime
+from wnba_data_collector import collect_wnba_games
 from best_bet_selector_v2 import select_best_bet_v2
 from generate_totals_test_data import add_totals_test_data
 from train_totals_model import train_totals_model
