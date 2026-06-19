@@ -782,7 +782,7 @@ if "last_loaded_date" not in st.session_state:
     st.session_state["last_loaded_date"] = None
 
 
-st.title("NBA Games")
+st.title("WNBA Games")
 
 date_input = st.text_input(
     "Game Date (MM/DD/YYYY)",
@@ -822,7 +822,7 @@ if st.button("Load Daily Predictions"):
                 st.warning(f"Odds snapshot save skipped: {e}")
 
             st.success(
-                f"Loaded {len(data['games'])} real NBA game(s) from backend schedule."
+                f"Loaded {len(data['games'])} real WNBA game(s) from backend schedule."
             )
 
             if "mode" in data:
@@ -832,7 +832,7 @@ if st.button("Load Daily Predictions"):
             st.warning(
                 data.get(
                     "message",
-                    "No real NBA games found for this selected date."
+                    "No real WNBA games found for this selected date."
                 )
             )
 
@@ -2693,7 +2693,7 @@ if os.path.isfile("learning_dataset.csv"):
     )
 st.title("Model Control Center")
 st.subheader("Model Evaluation Dashboard")
-st.subheader("Historical NBA Data Engine")
+st.subheader("Historical WNBA Data Engine")
 st.subheader("Historical Backfill Engine")
 
 backfill_rows = st.number_input(
