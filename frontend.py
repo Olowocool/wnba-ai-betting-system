@@ -64,10 +64,6 @@ def load_odds_api_key():
     except Exception:
         return ""
 
-@app.get("/collect_wnba_games")
-def collect_wnba_games_endpoint():
-
-    return collect_wnba_games(2025)
 
 ODDS_API_KEY = load_odds_api_key()
 
