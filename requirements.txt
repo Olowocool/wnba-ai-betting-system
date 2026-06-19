@@ -1,0 +1,16 @@
+fastapi
+uvicorn
+pandas
+numpy
+scikit-learn
+joblib
+pyarrow
+requests
+nba_api
+xgboost
+lxml
+html5lib
+beautifulsoup4
+streamlit
+requests
+beautifulsoup4
