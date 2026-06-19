@@ -1,6 +1,7 @@
 from nba_api.stats.endpoints import scoreboardv2
 from datetime import datetime, timedelta, timezone
 from fastapi import FastAPI
+from wnba_data_collector import collect_wnba_games
 from fastapi.middleware.cors import CORSMiddleware
 import joblib
 import pandas as pd
@@ -118,6 +119,10 @@ except Exception as e:
 def root():
     return {"message": "NBA backend live"}
 
+@app.get("/collect_wnba_games")
+def collect_wnba_games_endpoint():
+
+    return collect_wnba_games(2025)
 
 @app.get("/version")
 def version():
