@@ -101,4 +101,5 @@ def predict_wnba_total(home_team, away_team, bookmaker_total=165.5):
         "avg_total_last_10": avg_total_last_10,
         "model_used": model_used,
         "model_file": MODEL_FILE if model_used else "fallback_average"
+        "debug_test": "WNBA_V2_RUNNING",
     }
