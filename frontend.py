@@ -826,6 +826,22 @@ season_input = st.number_input(
     value=2025,
     step=1
 )
+if result["status"] == "success":
+
+    if st.button("Save WNBA Totals Pick"):
+
+        save_result = save_wnba_totals_pick(
+            game_date="TODAY",
+            home_team=result["home_team"],
+            away_team=result["away_team"],
+            projected_total=result["projected_total"],
+            sportsbook_total=result["bookmaker_total"],
+            recommendation=result["recommendation"]
+        )
+
+        st.success("WNBA totals pick saved.")
+        st.json(save_result)
+        
 if os.path.exists("data/wnba_games.csv"):
     with open("data/wnba_games.csv", "rb") as file:
         st.download_button(
