@@ -9,6 +9,7 @@ from totals_tracker import (
 )
 from datetime import date, datetime
 from wnba_totals_model import predict_wnba_total
+from wnba_totals_tracker import save_wnba_totals_pick, load_wnba_totals_history
 from train_wnba_totals_model import train_wnba_totals_model
 from best_bet_selector_v2 import select_best_bet_v2
 from wnba_data_collector import collect_wnba_games
