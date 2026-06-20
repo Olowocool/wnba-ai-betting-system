@@ -9,6 +9,7 @@ from totals_tracker import (
 )
 from datetime import date, datetime
 from wnba_totals_model import predict_wnba_total
+from train_wnba_totals_model import train_wnba_totals_model
 from best_bet_selector_v2 import select_best_bet_v2
 from wnba_data_collector import collect_wnba_games
 from generate_totals_test_data import add_totals_test_data
@@ -773,7 +774,21 @@ st.title("WNBA Games")
 st.subheader("WNBA Data Collector")
 
 st.subheader("WNBA Totals Test")
+st.subheader("WNBA Model Training")
 
+if st.button("Train WNBA Totals Model"):
+    result = train_wnba_totals_model()
+
+    if result["status"] == "success":
+        st.success(
+            f"WNBA model trained successfully. "
+            f"Rows: {result['rows']} | "
+            f"Model: {result['model_file']}"
+        )
+    else:
+        st.error(result.get("message", "Training failed"))
+
+    st.json(result)
 home_team = st.text_input("Home Team", value="New York Liberty")
 away_team = st.text_input("Away Team", value="Las Vegas Aces")
 
