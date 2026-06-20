@@ -3070,4 +3070,3 @@ if model_versions:
                 st.info(
                     "No totals picks tracked yet."
                 )
-
