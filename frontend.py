@@ -8,6 +8,7 @@ from totals_tracker import (
     load_totals_history
 )
 from datetime import date, datetime
+from wnba_totals_model import predict_wnba_total
 from best_bet_selector_v2 import select_best_bet_v2
 from wnba_data_collector import collect_wnba_games
 from generate_totals_test_data import add_totals_test_data
@@ -771,6 +772,37 @@ st.title("WNBA Games")
 
 st.subheader("WNBA Data Collector")
 
+st.subheader("WNBA Totals Test")
+
+home_team = st.text_input("Home Team", value="New York Liberty")
+away_team = st.text_input("Away Team", value="Las Vegas Aces")
+
+bookmaker_total = st.number_input(
+    "Bookmaker Total",
+    min_value=100.0,
+    max_value=250.0,
+    value=165.5,
+    step=0.5
+)
+
+if st.button("Predict WNBA Total"):
+    result = predict_wnba_total(
+        home_team=home_team,
+        away_team=away_team,
+        bookmaker_total=bookmaker_total
+    )
+
+    if result["status"] == "success":
+        st.success(
+            f"{result['recommendation']} | "
+            f"Projected Total: {result['projected_total']} | "
+            f"Edge: {result['edge']}"
+        )
+    else:
+        st.error(result["message"])
+
+    st.json(result)
+    
 season_input = st.number_input(
     "Season",
     min_value=2020,
