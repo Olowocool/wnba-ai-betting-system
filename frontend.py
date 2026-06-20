@@ -802,18 +802,36 @@ bookmaker_total = st.number_input(
 )
 
 if st.button("Predict WNBA Total"):
+
     result = predict_wnba_total(
         home_team=home_team,
         away_team=away_team,
         bookmaker_total=bookmaker_total
     )
 
+    st.success(
+        f"{result['recommendation']} | "
+        f"Projected Total: {result['projected_total']} | "
+        f"Edge: {result['edge']}"
+    )
+
+    st.json(result)
+
     if result["status"] == "success":
-        st.success(
-            f"{result['recommendation']} | "
-            f"Projected Total: {result['projected_total']} | "
-            f"Edge: {result['edge']}"
-        )
+
+        if st.button("Save WNBA Totals Pick"):
+
+            save_result = save_wnba_totals_pick(
+                game_date="TODAY",
+                home_team=result["home_team"],
+                away_team=result["away_team"],
+                projected_total=result["projected_total"],
+                sportsbook_total=result["bookmaker_total"],
+                recommendation=result["recommendation"]
+            )
+
+            st.success("WNBA totals pick saved.")
+            st.json(save_result)
     else:
         st.error(result["message"])
 
