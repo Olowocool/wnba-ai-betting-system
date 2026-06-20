@@ -810,7 +810,15 @@ season_input = st.number_input(
     value=2025,
     step=1
 )
-
+if os.path.exists("data/wnba_games.csv"):
+    with open("data/wnba_games.csv", "rb") as file:
+        st.download_button(
+            label="Download WNBA Games CSV",
+            data=file,
+            file_name="wnba_games.csv",
+            mime="text/csv"
+        )
+        
 if st.button("Load WNBA Historical Games"):
     result = collect_wnba_games(int(season_input))
 
